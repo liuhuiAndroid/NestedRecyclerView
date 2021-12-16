@@ -39,6 +39,13 @@ public class NestedScrollLayout extends NestedScrollView {
         init();
     }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        topView = ((ViewGroup) getChildAt(0)).getChildAt(0);
+        contentView = (ViewGroup) ((ViewGroup) getChildAt(0)).getChildAt(1);
+    }
+
     private FlingHelper mFlingHelper;
 
     int totalDy = 0;
@@ -100,13 +107,6 @@ public class NestedScrollLayout extends NestedScrollView {
             isStartFling = true;
             this.velocityY = velocityY;
         }
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        topView = ((ViewGroup) getChildAt(0)).getChildAt(0);
-        contentView = (ViewGroup) ((ViewGroup) getChildAt(0)).getChildAt(1);
     }
 
     @Override
